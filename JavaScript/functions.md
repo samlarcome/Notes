@@ -1,10 +1,11 @@
 # Functions
 
 ## Function Declaration
-
-  `function fnName() {
+  ```javascript
+  function fnName() {
     //Body of function
-  }`
+  }
+  ```
   
 ## Parameters and Arguments
   - Pretty standard
