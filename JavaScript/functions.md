@@ -2,9 +2,9 @@
 
 ## Function Declaration
 
-  function fnName() {
+  `function fnName() {
     //Body of function
-  }
+  }`
   
 ## Parameters and Arguments
   - Pretty standard
