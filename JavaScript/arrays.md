@@ -61,6 +61,7 @@
   ```JavaScript
     console.log(cities.unshift('Atkinson', 'Haverhill'))
     // cities = ['Atkinson', 'Haverhill', 'Windham', 'Boston', 'New York']
+  ```
     
   - '.slice(inclusive, exclusive)' returns a shallow copy (same reference) 
   ```JavaScript
