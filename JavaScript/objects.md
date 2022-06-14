@@ -205,12 +205,92 @@
         }
       }
     };
-    robot.energyLevel = 50  // notice we do not use parenthesis when calling getter
+    robot.energyLevel = 50  // notice we do not use parenthesis when calling setter
     console.log(robot.energyLevel) // 50
   ```
 
 ## Factory Functions
+  - A function that returns an object and can be reused to make multiple object instances
+  - Can accept parameters that allow us to customize objects that get returned
 
+  ```JavaScript 
+    const robotFactory = (model, mobile) => {
+      return {
+        model: model,
+        mobile: mobile,
+        beep() {
+          console.log('Beep Boop')
+        }
+      }
+    }
+    const tinCan = robotFactory('P-500', true)
+    tinCan.beep() // Beep Boop
+  ```
 
-    
+## Property Value Shorthand
+  - ES6 introduced some shortcuts for assigning properties to variables known as destructuring
+  - Above, we assigned each property a key-value pair though the key name was the same as the parameter name
+  - We can use a destructuring technique, called 'property value shorthand'
       
+  ```JavaScript
+    // refactored code from factory functions above
+    const robotFactory = (model, mobile) => {
+      return {
+        model,
+        mobile,
+        beep() {
+          console.log('Beep Boop')
+        }
+      }
+    }
+    const tinCan = robotFactory('P-500', true)
+  ```
+
+## Destructed Assignment*
+  - Useful to extract key-value pairs from objects when storing them in variables
+  - destructured assignment, create a variable with the name of an object’s key wrapped in curly braces { } and assign to it the object
+  - Can use destructured assignment to call nested properties of an object
+  
+  ```JavaScript
+    const robot = {
+      model: '3654',
+      energyLevel: 96,
+      functionality: {
+        beep() {
+          console.log('Beep Boop');
+        }  
+      }
+    };
+    
+    const { energyLevel } = robot
+    console.log(energyLevel) // 96
+    const { functinality } = robot
+    // Functionality is referencing robot.functionality, can call methods available to robot.functionality through functionality
+    functionality.beep() // Beep Boop
+  ```
+  
+## Built-in Object Methods
+  - JavaScript has built-in methods for objects we create
+  
+  ```JavaScript
+    cosnt person = {
+      name: 'Sam',
+      age: 20,
+      ocupation: 'BI Intern'
+    }
+  ```
+  
+  - 'Object.keys()' method returns an array of an object's own property names, iterated in the same order that a loop would
+  ```JavaScript
+    Object.keys(person) // ['name', 'age', 'ocupation']
+  ```
+  - 'Object.entries()' method returns an array with more arrays that have both the key-value of the properties in an object
+  ```JavaScript
+    Object.entries(person) // [['name', 'Sam'], ['age', 20], ['ocupation', 'BI Intern']]
+  ```
+  - 'Object.assign()' method copies all enumerable own properties from one or more source objects to a target object and returns the modified target object.
+  ```JavaScript
+    const newPerson = {}
+    Object.assign(newPerson, person, {height: 6})
+    console.log(newPerson) // {name: 'Sam', age: 20, ocupation: 'BI Intern', height: 6}
+  
