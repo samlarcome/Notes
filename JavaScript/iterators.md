@@ -43,9 +43,25 @@
   ```
   
 # Iterators
+  - Built-in array methods that help iterate are called iterators. 
+  - Iterators are methods called on arrays to manipulate elements and return values
 
+## .forEach() Method
+  - Executes the same code for each element in array
+  - Takes a callback function for an argument
+  - Return value is always undefined
 
-
-
+  ```JavaScript
+    let fruits = ['apples', 'oranges', 'bananas'];
+    // a few ways to pass functions
+    fruits.forEach(function(fruit) { console.log(`I like to eat ${fruit}`) }
+    // arrow functions*
+    fruits.forEach(fruit => console.log(`I like to eat ${fruit}`));
+    // define function before
+    functon logFruits(fruit) {
+      console.log(`I like to eat ${fruit}`);
+    }
+    fruits.forEach(logFruits);
+    ```
 
 
