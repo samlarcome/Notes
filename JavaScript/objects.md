@@ -29,12 +29,11 @@
   - Bracket notation (2)
   - Pass in the property name (key) as a string
   - Must use bracket notation when accessing keys that have numbers, spaces, or special characters
-  - 
 
   ```JavaScript
     spaceship.color //returns 'silver'
     let propName = 'Active Mission'
-    spaceshit[propName] // returns true
+    spaceship[propName] // returns true
   ```
   
 ## Property Assignment
