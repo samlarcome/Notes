@@ -54,14 +54,72 @@
   ```JavaScript
     let fruits = ['apples', 'oranges', 'bananas'];
     // a few ways to pass functions
-    fruits.forEach(function(fruit) { console.log(`I like to eat ${fruit}`) }
+    fruits.forEach(function(fruit) {
+      console.log(`I like to eat ${fruit}`);
+    }
+    
     // arrow functions*
     fruits.forEach(fruit => console.log(`I like to eat ${fruit}`));
+    
     // define function before
     functon logFruits(fruit) {
       console.log(`I like to eat ${fruit}`);
     }
     fruits.forEach(logFruits);
-    ```
+  ```
+
+## .map() Method
+  -  Takes a callback function as an argument and returns a new array
+
+  ```JavaScript
+    let nums = [1,2,3,4,5]
+    let largeNums = nums.map(num => {
+      return num * 100;
+    }
+    console.log(largeNums); // [100,200,300,400,500]
+  ```
+
+## .filter() Method
+  - Returns a new array like .map()
+  - Returns an array of elements that filters out certain elements from the original array
+  - The callback function should return true or false depending on element passed to it
+  
+  ```JavaScript 
+    let nums = [74,23,5,34,1034];
+    const bigNums = nums.filter(num => {
+      return num > 30;
+    }
+    console.log(bigNums); // [74, 34, 1034]
+  ```
+  
+## .findIndex() Method
+  - Returns the index of the first element that evaluates to true in the callback function
+  - Will return -1 if there is no element that satisfies the callback function
+  
+  ```JavaScript 
+    const names = ['Sam', 'Bob', 'Billy', 'Max'];
+    const startsWithB = names.findIndex(name => {
+      return name[0] === 'B';
+    }
+    console.log(startsWithB); // 1
+  ```
+  
+## .reduce() Method
+  - Returns a single value after iterating through the elements of an array, thereby reducing the array
+  - Can take an optional second argument that is the intial value of the accumulator below
+  - This is best shown by an example 
+
+  ```JavaScript
+    const nums = [1, 3, 5, 7];
+
+    const sum = nums.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    }, 10) // 10 is the initial value for accumulator
+  
+    console.log(newSum); // 16
+  ```
+
+
+
 
 
