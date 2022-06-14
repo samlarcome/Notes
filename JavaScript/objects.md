@@ -116,7 +116,9 @@
       console.log(`${spaceship.crew[member].name}: ${spaceship.crew[member].degree}`) // Sam: Computer Science
     }
   ```
-  
+
+# Advanced Objects 
+
 ## This Keyword
   - The 'this' keyword references the calling object which provides access to the calling object’s properties
 
@@ -130,6 +132,85 @@
     };
   ```
     
-        
-        
+## Arrow Functions and this Keyword
+  - Avoid using arrow functions with the 'this' keyword in objects
+  - Arrow functions inherently bind an already defined 'this' value to the function itself that is NOT the calling object
+  - The value of this is the global object that doesn’t have a getName property and returns undefined
+    - A global object is an object that always exists in the global scope
+    - Scripts running under Node.js have an object called 'global' as their global object. 
+
+  ```JavaScript
+    const obj = {
+      name: 'Sam',
+      getName: () => {
+        console.log('Hello, my name is ' + this.name)
+      }
+    }
+    // Hello, my name is undefined
+  ```
+
+## Privacy 
+  - JavaScript does not have built in privacy for objects
+  - Popular naming convention is to place an "_" before the name of a property
+  - They can still be manipulated, even thought they are intended to not be      
     
+  ```JavaScript
+    const robot = {
+      _energyLevel: 100
+    }
+    robot._energyLevel = 95 // not supposed to change, but technically still can
+  ```
+  
+## Getters
+  - Getters are methods that get and return the internal properties of an object
+  - In a getter, we can access the properties of the calling object using 'this'
+  - Getters can return different values using conditionals
+  - Properties cannot share the same name as getters and setters
+
+  ```JavaScript
+    const robot = {
+      _model: '325483',
+      _energyLevel: 95,
+      get energyLevel() {
+        if (typeof(this._energyLevel) === 'number'){
+          return `My current energy level is ${this._energyLevel}`
+        } else {
+          return 'System malfunction: cannot retrieve energy level'
+        }
+      }
+    };
+    console.log(robot.energyLevel) // notice we do not use parenthesis when calling getter
+  ```
+
+## Setters
+  - Setter methods can reassign values of existing properties in an object
+  - Setters don't need to be called parentheses. Looks like we’re reassigning the value of a property
+
+  ```JavaScript
+    const robot = {
+      _model: '325483',
+      _energyLevel: 95,
+      get energyLevel() {
+        if (typeof(this._energyLevel) === 'number'){
+          return `My current energy level is ${this._energyLevel}`
+        } else {
+          return 'System malfunction: cannot retrieve energy level'
+        }
+      },
+      set energyLevel(lvl) {
+        if (typeof(lvl) === 'number' && lvl >= 0) {
+          this._energyLevel = lvl
+        } else {
+          console.log('Enter a number greater than or equal to 0')
+        }
+      }
+    };
+    robot.energyLevel = 50  // notice we do not use parenthesis when calling getter
+    console.log(robot.energyLevel) // 50
+  ```
+
+## Factory Functions
+
+
+    
+      
