@@ -75,7 +75,7 @@
     let nums = [1,2,3,4,5]
     let largeNums = nums.map(num => {
       return num * 100;
-    }
+    })
     console.log(largeNums); // [100,200,300,400,500]
   ```
 
@@ -88,7 +88,7 @@
     let nums = [74,23,5,34,1034];
     const bigNums = nums.filter(num => {
       return num > 30;
-    }
+    })
     console.log(bigNums); // [74, 34, 1034]
   ```
   
@@ -100,7 +100,7 @@
     const names = ['Sam', 'Bob', 'Billy', 'Max'];
     const startsWithB = names.findIndex(name => {
       return name[0] === 'B';
-    }
+    })
     console.log(startsWithB); // 1
   ```
   
@@ -119,7 +119,17 @@
     console.log(newSum); // 16
   ```
 
+## .every() Method
+  - Determines whether all elements in the array pass the test implemented by the provided function
+  - Returns a boolean value
 
+  ```JavaScript
+    const testing = [1,2,3,4,5];
+    const bool = testing.every(num => {
+      return num <= 5;
+    })
+    // returns true
+  ```
 
 
 
