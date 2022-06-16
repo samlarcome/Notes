@@ -1,4 +1,5 @@
 # Classes
+  - [JS Classes Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 
 ## Constructor
   - JS calls the constructor() method every time it creates a new instance of a class
