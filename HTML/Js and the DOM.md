@@ -16,11 +16,30 @@
   - Can also add any valid HTML elements
 
 ## Select and Modify Elements
-  - The DOM allows us to select and edit elements with CSS selectors
-  - 
+  - The DOM allows us to select and edit elements with CSS selectors (tag name, class, id)
+  - '.querySelector()' takes a CSS selector as a string and returns the first element with that selector
+  - 'getElementById()' accesses an element directly by its id
+  - 'getElementByClassName()' returns an array of elements
+  - 'getElementByTagName()' returns an array of elements
+  ```JavaScript
+    document.getElementById('test').innerHTML = 'Hello World!';
+    document.getElementsByClassName('tests')[0].innerHTML = 'foo bar';
+  ```
 
 ## Style and Element
-
-
+  - The '.style' property provides access to the element's inline style
+  - element.style.property where the property = a CSS property
+  ```JavaScript
+    document.body.style.backgroundColor = 'blue';
+  ```
+  - Notice there is no hyphen (-) like there would be in CSS (background-color)
+  
 ## Traversing the DOM
+  - Each element has a '.parentNode' property and a '.children' property
+    - The document element does not have a parent node (null)
+  - '.children' will return an array of an elements children, if none it returns null
 
+## Create and Insert Elements
+  - 'createElement()' method creates an element based on the tag that is passed to it
+  - Creates an empty element with no inner HTML in it
+  - 
