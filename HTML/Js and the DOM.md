@@ -38,8 +38,48 @@
   - Each element has a '.parentNode' property and a '.children' property
     - The document element does not have a parent node (null)
   - '.children' will return an array of an elements children, if none it returns null
+  ```JavaScript
+    let one = document.body.children[0];
+    one.parent.style.backgroundColor = blue;
+  ```
 
 ## Create and Insert Elements
   - 'createElement()' method creates an element based on the tag that is passed to it
   - Creates an empty element with no inner HTML in it
-  - 
+  - Can assign values to properties of new HTML element
+  - In order to add a new element to the webpage, you must assign it to be a child of an already existing element in DOM
+  - Process is called appending which is done with '.appendChild()' method
+  ```JavaScript
+    let test = document.createElement('li');
+    test.id = 'test';
+    test.innerHTML = 'testing';
+    document.querySelector('ul').appendChild(test);
+  ```
+  
+## Remove an Element
+  - '.removeChild()' removes a specified child from a parent
+  ```JavaScript
+    let par = document.querySelector('p');
+    document.body.removeChild(par);
+  ```
+  - Can also hide an element rather than removing it by setting the hidden property to true
+  ```JavaScript
+    document.getElementById('test').hidden = true;
+  ```
+
+## Add Click Interactivity
+  - Can interactivity to DOM elements by having a fxn run based on an event
+  - An event can include anything from a click to a user hovering over something
+  - The '.onclick' property allows you to assign a fxn to run when an element is clicked
+  ```JavaScript
+    element.onclick = function() {
+      element.style.backgroundColor = 'red';
+    };
+  ```
+  - Can also assign the onclick property to a fxn by name
+  ```JavaScript
+    function turnRed {
+      element.style.backgroundColor = 'red';
+    }
+    element.onclick = turnRed;
+  ```
