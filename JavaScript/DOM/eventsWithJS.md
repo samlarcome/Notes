@@ -73,4 +73,15 @@
   ```
 
 ## Mouse Events
-  - 
+  - 'click' and 'wheel' are both mouse events
+  - 'mousedown' = fires when user presses mouse down (doesn't require release) 
+  - 'mouseup' = fires when user releases mouse button
+  - 'mouseover' = fires when mouse enters content of an element
+  - 'mouseout' = fires when mouse leaves content of an element
+  
+## Keyboard Events
+  - Keyboard events are triggered by user interaction with the keyboard (duh)
+  - 'keydown' = fired when user presses down on a key
+  - 'keyup' = is fired when user releases a key
+  - 'keypress' = fired when user presses down on a key AND releases it
+  - Keyboard events have unique properties like '.key' that stores value of key pressed
