@@ -1,4 +1,4 @@
-# Node.js Essentials
+# [Node.js](https://nodejs.org/en/docs/) Essentials
 
 ## The Event Module
   - Node is described as having an "event-driven architecture"
@@ -97,3 +97,92 @@
     const buff = Buffer.concat([buff1, buff2]);
     console.log(buff);  // [104, 101, 108, 108, 111, 119, 111, 114, 108, 100]
   ```
+
+## The FS Module
+  - All data on computer is organized in a *file system*
+  - Important to have limited access to a user's filesystem when running JS on a browser (*sandboxing*)
+  - Sandboxing protects users from malicious programs and invasion of privacy
+  - Important to have less restricted access when working in backend
+  - The ```fs``` core module is an API modeled after POSIX standard for interacting with the **f**ile **s**ystem
+  - Each method has one synchronus and one asynchronus version
+  ```Js
+    const fs = require('fs');
+    let readDataCallback = (err, data) => {
+      if (err) {
+        console.log(`There was an error: ${err}`);
+      } else {
+        console.log(`Data was found: ${data}`);
+      }
+    fs.readFile('./example.txt', 'utf-8', readDataCallback);
+  ```
+  - The ```fs.readFile(path, encoding, callback)``` is invoked with 3 arguments
+    - path: string with path to file
+    - encoding: character encoding 
+    - callback: callback fxn to be invoked when asynchronus task of reading from filesystem is complete. *Node passes file contents as second argument to callback fxn*
+
+
+## Readable Streams
+  - In a more realistic scenario, data is not processed all at once
+  - It is processed sequentially, piece by piece, this is known as a *stream*
+  - Preferable, do not need all the necessary ram to process at once, don't need all the data on hand to begin processing
+  - Simple example: reading and writing to files line by line
+  ```Js
+    const fs = require('fs');
+    const readline = require('readline');
+    
+    // myInterface is an EventEmitter object, setup to emit 'line' events
+    // 'line' event is emitted after each line is read from the file
+    let myInterface = readline.createInterface({
+      // create stream from example.txt file:
+      input: fs.createReadStream('example.txt');
+    });
+    
+    // assign listener callback that fires when 'line' events are executed
+    myInterface.on('line', (fileLine) => {
+      console.log(`This line read: ${fileLine}`);
+    });
+  ```
+  
+## Writeable Streams
+  - Can also write data to streams
+  - Can create write streams with ```fs.createWriteStream('example.txt')```
+  - Unlike read streams, write streams can remain open forever, must close (end) them when done
+  ```Js
+    const fs = require('fs');
+    let fileStream = fs.createWriteStream('example.txt');
+    
+    fileStream.write('Writing to the first line');
+    fileStream.write('Writing to the second line');
+    fileStream.end();
+  ```
+  
+  ### Combine the Two
+  ```Js
+    const rl = require('readline');
+    const fs = require('fs');
+
+    let myInterface = rl.createInterface({
+      input: fs.createReadStream('input.txt');
+    });
+
+    let fileStream = fs.createWriteStream('output.txt');
+
+    const listenerCallback = line => {
+      fileStream.write(`Writing from input.txt: ${line}`);
+    }
+
+    myInterface.on('line', listenerCallback);
+    fileStream.end();
+  ```
+  
+## The Timers Module
+  - The ```timer``` module is global
+  - When we want some code to be executed at a specific point in time
+  - Time functions are added to the Node.js event loop
+    - Timer functions are scheduled and put into a queue
+    - Queue is processed at every iteration of the event loop
+  - ```setImmediate()``` can be compared with ```setTimeout()``` function
+  - ```setImmediate()``` executes specified callback fxn after the current [poll phase](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#setimmediate-vs-settimeout) is completed
+    - 1st arg: call back function, *required*
+    - 2nd arg: arguments for callback function, *optional*
+  - With many ```setImmediate()``` fxns, they will be executed in order of creation
