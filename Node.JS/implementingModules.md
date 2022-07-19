@@ -1,4 +1,4 @@
-# Implementing Modules in Node
+# Implementing [Modules](https://nodejs.org/docs/latest-v14.x/api/modules.html) in Node
 
 ## Module.exports
   - To create a new module, simply create a file where functions can be declared
