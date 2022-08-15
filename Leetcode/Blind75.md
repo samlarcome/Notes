@@ -22,26 +22,6 @@
 ## 8) [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
 
 ## 9) [3Sum](https://leetcode.com/problems/3sum/)
-  - Given an integer array nums, return all the triplets ```[nums[i], nums[j], nums[k]]``` such that ```i != j, i != k, and j != k,``` and ```nums[i] + nums[j] + nums[k] == 0```
-  - Notice that the solution set must not contain duplicate triplets  
-  
-  **Example:**
-  ```
-    Input: nums = [-1,0,1,2,-1,-4]
-    Output: [[-1,-1,2],[-1,0,1]]
-    Explanation: 
-    nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
-    nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
-    nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
-    The distinct triplets are [-1,0,1] and [-1,-1,2].
-    Notice that the order of the output and the order of the triplets does not matter.
-```
-  **Solution:**
-  ```Python
-    print()
-  ```
-  
-  **Explanation:**
 
 # Binary
 
@@ -98,6 +78,51 @@
   - Before returning, we check if the pointer for either list has not reached the end (one should not because of while loop condition)
     - We can just add it to the end of the merged list as we know it is already sorted
   - We return ```merged.next``` because we set merged to an empty node ```merged = ListNode()``` and the first thing we set is ```merged.next```
+
+## 2) [Remove N-th Node from End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/) (Medium)
+  - Given the ```head``` of a linked list, remove the ```nth``` node from the end of the list and return its head.  
+  **Example:**
+  ```
+  [1,2,3,4,5] and n = 2
+  [1,2,3,5]
+  ```
+
+  **Solution:**
+  ```Python
+    # Definition for singly-linked list.
+    # class ListNode(object):
+    #   def __init__(self, val=0, next=None):
+    #     self.val = val
+    #     self.next = next
+    class Solution(object):
+      def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        dummy = ListNode(-1, head)
+        left, right = dummy, head
+        while n > 0 and right:
+          right = right.next
+          n -= 1
+          
+        while right:
+          left = left.next
+          right = right.next
+          
+        left.next = left.next.next
+        return dummy.next
+  ```
+  **Explanation:**  
+  - The difficulty is identifying where the nth last node is in the singly linked list
+  - We can use a two pointer method, like many linked list problems
+  - **The key: if we start the left and right pointer *n* nodes apart, the left points to the node to remove when right is none after shifting each by one**
+  - The issue is, we are at the exact node we want to remove. If we want to remove it, we need the previous node (left.prev) to point to the next node (left.next)
+  - We can solve this with the dummy node technique, inserting a 'dummy' node before the ```head``` node that we do not really use
+  - But if we start our left pointer right before the head node, it will point to the node just before the node we want to remove
+  - This allows us to make a call like ```left.next = left.next.next``` to remove the desired node
+
 
 # Matrix
 
