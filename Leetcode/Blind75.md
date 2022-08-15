@@ -53,6 +53,52 @@
 
 # Linked List
 
+## 1) [Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+  - You are given the head of two sorted linked lists ```list1``` and ```list2```
+  - Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists
+  - Return the head of the merged linked list
+
+  **Example**
+  ```
+    list1: 1 -> 2 -> 4
+    list2: 1 -> 3 -> 4
+    merge: 1 -> 1 -> 2 -> 3 -> 4 -> 4
+  ```
+
+  **Solution**
+  ```Python
+    # Definition for singly-linked list.
+    # class ListNode(object):
+    #     def __init__(self, val=0, next=None):
+    #         self.val = val
+    #         self.next = next
+    class Solution(object):
+        def mergeTwoLists(self, list1, list2):
+          temp = merged = ListNode()
+          
+          while list1 and list2:
+            if list1.val > list2.val:
+              temp.next = list2
+              temp, list2 = temp.next, list2.next
+            else:
+              temp.next = list1
+              temp, list1 = temp.next, list1.next
+              
+          if list1:
+            temp.next = list1
+          elif list2:
+            temp.next = list2
+            
+          return merged.next
+  ```
+  **Explanation:**  
+  - We use a two pointer method here, where each pointer starts at head of each linked list
+  - At each iteration, we just add the the node with the lesser value to the merged list, and move that pointer to the next node
+  - We repeat this until one of the pointers reaches the end of its respective linked list
+  - Before returning, we check if the pointer for either list has not reached the end (one should not because of while loop condition)
+    - We can just add it to the end of the merged list as we know it is already sorted
+  - We return ```merged.next``` because we set merged to an empty node ```merged = ListNode()``` and the first thing we set is ```merged.next```
+
 # Matrix
 
 # String 
